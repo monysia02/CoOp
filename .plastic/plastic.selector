@@ -1,0 +1,4 @@
+repository "CoOp/CoOp@7972448979162@cloud"
+  path "/"
+    br "/main"
+    co "/main"
