@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9015e3b1c5062bc43af91a5f90ccb4d0
+guid: 99ca092591d7edf468d93a80f6d08d77
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2653707577421233218
-    second: biedronka_0
+      213: -6632506077831607180
+    second: biedronka 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: biedronka_0
+      name: biedronka 1_0
       rect:
         serializedVersion: 2
         x: 32
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 24c74f15bfcd3d420800000000000000
-      internalID: 2653707577421233218
+      spriteID: 47c4a3cdcda94f3a0800000000000000
+      internalID: -6632506077831607180
       vertices: []
       indices: 
       edges: []
@@ -134,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      biedronka 1_0: -6632506077831607180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
