@@ -91,4 +91,9 @@ public class PointCollector : MonoBehaviour
         return ladybugPoints;
     }
     
+    public bool HasEnoughPoints(int required)
+    {
+        return ladybugPoints >= required && catPoints >= required;
+    }
+    
 }

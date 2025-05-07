@@ -16,11 +16,9 @@ public class MushroomSwitch : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (isActivated) return;
-
-        //Gracz?
+        
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Czy z góry?
             if (collision.contacts[0].normal.y < -0.5f)
             {
                 ActivateSwitch();
@@ -32,6 +30,7 @@ public class MushroomSwitch : MonoBehaviour
     void ActivateSwitch()
     {
         isActivated = true;
+        GetComponent<MushroomClickSound>()?.PlayClickSound();
 
         if (pressedSprite != null && sr != null)
             sr.sprite = pressedSprite;
@@ -40,5 +39,4 @@ public class MushroomSwitch : MonoBehaviour
             floorAnimator.SetTrigger("flooropen");
     
     }
-
 }

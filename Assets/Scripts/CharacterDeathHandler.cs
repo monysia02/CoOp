@@ -17,6 +17,9 @@ public class CharacterDeathHandler : MonoBehaviour
     private int currentLives;
 
     [SerializeField] private LifeDisplay lifeDisplay;
+    
+    [SerializeField] private AudioClip damageSound;
+    // [SerializeField] private float damageVolume = 1f;
 
     private void Awake()
     {
@@ -30,19 +33,21 @@ public class CharacterDeathHandler : MonoBehaviour
 
     public void TriggerDeath()
     {
+        AdditionalSoundsManager.Instance.PlayDamage(damageSound);
+        
         if (isDead || currentLives <= 0) return;
 
         currentLives--;
 
         lifeDisplay?.UpdateLives(currentLives);
         
-        if (playerType == PlayerType.Ladybug)
-            GameManager.Instance.CheckGameOver(currentLives, FindLadybugLives());
-        else if (playerType == PlayerType.Cat)
-            GameManager.Instance.CheckGameOver(FindCatLives(), currentLives);
-
-        
         isDead = true;
+        if (animator != null)
+        {
+            animator.SetBool("run", false);
+            animator.SetBool("grounded", false);
+            animator.Play(idleAnimationName);  
+        }
         StartCoroutine(DeathSequence());
     }
     
@@ -53,7 +58,6 @@ public class CharacterDeathHandler : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
-        // Tymczasowe wyłączenie fizyki
         body.linearVelocity = Vector2.zero;
         body.gravityScale = 0;
         body.bodyType = RigidbodyType2D.Kinematic;
@@ -65,16 +69,11 @@ public class CharacterDeathHandler : MonoBehaviour
             yield return null;
         }
 
-        // Wpadnięcie pod wodę
         yield return MoveByOffset(new Vector2(0, -0.5f), 0.2f);
-
-        // Skok w górę (wizualny)
         transform.position += new Vector3(0f, 0.7f, 0f);
 
-        // Na wierzchu
         if (spriteRenderer != null) spriteRenderer.sortingOrder = 100;
 
-        // Mruganie
         if (spriteRenderer != null)
         {
             for (int i = 0; i < 3; i++)
@@ -86,14 +85,25 @@ public class CharacterDeathHandler : MonoBehaviour
             }
         }
 
-        // Przywrócenie fizyki i rozpoczęcie "spadku trupa"
         transform.rotation = Quaternion.Euler(0, 0, 90);
         body.bodyType = RigidbodyType2D.Dynamic;
         body.gravityScale = 1f;
+
+        yield return StartCoroutine(WaitUntilY(-4f));
+
+        if (playerType == PlayerType.Ladybug)
+            GameManager.Instance.CheckGameOver(currentLives, FindLadybugLives());
+        else if (playerType == PlayerType.Cat)
+            GameManager.Instance.CheckGameOver(FindCatLives(), currentLives);
         
-        yield return StartCoroutine(WaitUntilY(-10f));
-        
-        StartCoroutine(Respawn());
+        if (currentLives > 0)
+        {
+            StartCoroutine(Respawn());
+        }
+        else
+        {
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+        }
     }
 
 
@@ -119,8 +129,7 @@ public class CharacterDeathHandler : MonoBehaviour
         {
             yield return null; 
         }
-
-        // Zatrzymaj spadanie
+        
         Vector3 pos = transform.position;
         pos.y = minY;
         transform.position = pos;
@@ -132,7 +141,6 @@ public class CharacterDeathHandler : MonoBehaviour
     
     private IEnumerator Respawn()
     {
-        // Odczekaj np. 0.5s po śmierci (opcjonalnie)
         yield return new WaitForSeconds(0.5f);
 
         Vector3 respawnPos;
@@ -149,8 +157,7 @@ public class CharacterDeathHandler : MonoBehaviour
         {
             respawnPos = transform.position;
         }
-
-        // Przywracamy gracza
+        
         transform.rotation = Quaternion.identity;
         transform.position = respawnPos;
         
@@ -165,6 +172,8 @@ public class CharacterDeathHandler : MonoBehaviour
         
         spriteRenderer.sortingOrder = 0;
         StartCoroutine(FadeIn(0.5f));
+        GetComponent<KillZoneChecker>()?.ResetDiedFlag();
+
     }
     
     private IEnumerator FadeIn(float duration)
@@ -185,16 +194,14 @@ public class CharacterDeathHandler : MonoBehaviour
     
     private int FindLadybugLives()
     {
-        var other = FindObjectOfType<LadyBugController>()?.GetComponent<CharacterDeathHandler>();
+        var other = FindFirstObjectByType<LadyBugController>()?.GetComponent<CharacterDeathHandler>();
         return other != null ? other.currentLives : 0;
     }
 
     private int FindCatLives()
     {
-        var other = FindObjectOfType<CatPlayerController>()?.GetComponent<CharacterDeathHandler>();
+        var other = FindFirstObjectByType<CatPlayerController>()?.GetComponent<CharacterDeathHandler>();
         return other != null ? other.currentLives : 0;
     }
 
 }
-
-

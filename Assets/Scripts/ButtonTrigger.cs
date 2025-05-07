@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonBlueTrigger : MonoBehaviour
+public class ButtonTrigger : MonoBehaviour
 {
     public BallColor requiredColor; 
     public SpriteRenderer buttonSpriteRenderer;
@@ -29,6 +29,7 @@ public class ButtonBlueTrigger : MonoBehaviour
             {
                 buttonSpriteRenderer.sprite = pressedSprite;
                 transform.position += new Vector3(0f, -0.05f, 0f);
+                GetComponent<MushroomClickSound>()?.PlayClickSound();
             }
         }
     }

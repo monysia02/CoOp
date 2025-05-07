@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MushroomSwitchPink1 : MonoBehaviour
@@ -7,6 +8,7 @@ public class MushroomSwitchPink1 : MonoBehaviour
     private SpriteRenderer sr;
     public Animator cageAnimator;
     public GameObject cage;
+
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -15,11 +17,9 @@ public class MushroomSwitchPink1 : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (isActivated) return;
-
-        //Gracz?
+        
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Czy z góry?
             if (collision.contacts[0].normal.y < -0.5f)
             {
                 ActivateSwitch();
@@ -31,6 +31,7 @@ public class MushroomSwitchPink1 : MonoBehaviour
     void ActivateSwitch()
     {
         isActivated = true;
+        GetComponent<MushroomClickSound>()?.PlayClickSound();
 
         if (pressedSprite != null && sr != null)
             sr.sprite = pressedSprite;
@@ -38,7 +39,6 @@ public class MushroomSwitchPink1 : MonoBehaviour
         if (cageAnimator != null)
             cageAnimator.SetTrigger("disappear");
         
-        //Wyłączenie kolizji
         if (cage != null)
         {
             BoxCollider2D[] colliders = cage.GetComponentsInChildren<BoxCollider2D>();
@@ -47,7 +47,5 @@ public class MushroomSwitchPink1 : MonoBehaviour
                 col.enabled = false;
             }
         }
-        
     }
-
 }

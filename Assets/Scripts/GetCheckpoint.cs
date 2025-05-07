@@ -14,7 +14,7 @@ public class GetCheckpoint : MonoBehaviour
         if (belongsTo == Owner.Ladybug && other.GetComponent<LadyBugController>() != null)
         {
             CheckpointManager.Instance.SetCheckpoint_Ladybug(respawnPoint.position);
-            Destroy(gameObject); // albo animacja znikania
+            Destroy(gameObject); 
         }
         else if (belongsTo == Owner.Cat && other.GetComponent<CatPlayerController>() != null)
         {

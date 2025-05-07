@@ -12,6 +12,7 @@ public class KillZoneChecker : MonoBehaviour
         deathHandler = GetComponent<CharacterDeathHandler>();
         rend = GetComponentInChildren<SpriteRenderer>();
     }
+    
 
     void Update()
     {
@@ -20,7 +21,7 @@ public class KillZoneChecker : MonoBehaviour
         // Oblicz dolną granicę kamery
         float camBottom = Camera.main.transform.position.y - Camera.main.orthographicSize;
 
-        // Oblicz dolną granicę gracza (jego sprite)
+        // Oblicz dolną granicę gracza
         float playerBottom = rend.bounds.min.y;
 
         if (playerBottom < camBottom)
@@ -28,7 +29,7 @@ public class KillZoneChecker : MonoBehaviour
             hasDied = true;
             Vector3 respawnPos = new Vector3(
                 transform.position.x,
-                Camera.main.transform.position.y - Camera.main.orthographicSize + 2.5f, //o ile do góry w przypadku śmierci
+                Camera.main.transform.position.y - Camera.main.orthographicSize + 2.5f,
                 transform.position.z
             );
 
@@ -38,11 +39,16 @@ public class KillZoneChecker : MonoBehaviour
 
     private IEnumerator RespawnAndDie(Vector3 positionAboveCamera)
     {
-        // Teleportuj nad kamerę (ale jeszcze nie zabijaj)
+        // Teleportuj nad kamerę
         transform.position = positionAboveCamera;
 
-        yield return null; // 1 frame delay
+        yield return null;
 
         deathHandler.TriggerDeath();
+    }
+    
+    public void ResetDiedFlag()
+    {
+        hasDied = false;
     }
 }
