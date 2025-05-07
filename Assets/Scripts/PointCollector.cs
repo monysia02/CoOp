@@ -43,7 +43,6 @@ public class PointCollector : MonoBehaviour
     public void AddLadybugPoints(int amount)
     {
         ladybugPoints += amount;
-        Debug.Log($"Ladybug: {ladybugPoints}");
         ladybugUI?.UpdatePoints(ladybugPoints);
         TryMoveCamera();
     }
@@ -51,7 +50,6 @@ public class PointCollector : MonoBehaviour
     public void AddCatPoints(int amount)
     {
         catPoints += amount;
-        Debug.Log($"Cat: {catPoints}");
         catUI?.UpdatePoints(catPoints);
         TryMoveCamera();
     }

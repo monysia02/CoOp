@@ -42,7 +42,6 @@ public class ExitZone : MonoBehaviour
         if (ladybugIn && catIn && !gameEnding)
         {
             gameEnding = true;
-            Debug.Log("Oboje weszli do drzwi – KONIEC GRY");
 
             StartCoroutine(HandleEndSequence());
         }
@@ -50,8 +49,8 @@ public class ExitZone : MonoBehaviour
     
     private IEnumerator HandleEndSequence()
     {
-        var ladybug = FindObjectOfType<LadyBugController>()?.gameObject;
-        var cat = FindObjectOfType<CatPlayerController>()?.gameObject;
+        var ladybug = Object.FindFirstObjectByType<LadyBugController>()?.gameObject;
+        var cat = Object.FindFirstObjectByType<CatPlayerController>()?.gameObject;
 
         if (victorySound != null)
             AudioSource.PlayClipAtPoint(victorySound, transform.position);

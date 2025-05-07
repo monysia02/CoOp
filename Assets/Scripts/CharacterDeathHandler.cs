@@ -19,7 +19,7 @@ public class CharacterDeathHandler : MonoBehaviour
     [SerializeField] private LifeDisplay lifeDisplay;
     
     [SerializeField] private AudioClip damageSound;
-    // [SerializeField] private float damageVolume = 1f;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -28,11 +28,13 @@ public class CharacterDeathHandler : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
         currentLives = maxLives;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
     public void TriggerDeath()
     {
+        audioSource?.Stop();
         AdditionalSoundsManager.Instance.PlayDamage(damageSound);
         
         if (isDead || currentLives <= 0) return;
