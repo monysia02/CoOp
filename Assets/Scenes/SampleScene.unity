@@ -8853,7 +8853,7 @@ MonoBehaviour:
   platformsToRise:
   - {fileID: 1992693865}
   - {fileID: 1544920502}
-  - {fileID: 0}
+  - {fileID: 2058844531}
 --- !u!61 &380350012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25261,9 +25261,9 @@ MonoBehaviour:
   pressedSprite: {fileID: -485356030272937858, guid: dfe63ba36c10f1449aca3682ee542692, type: 3}
   platformsToRise:
   - {fileID: 1555953691}
-  - {fileID: 2058844531}
+  - {fileID: 832435161}
   - {fileID: 835320964}
-  - {fileID: 1854712645}
+  - {fileID: 0}
 --- !u!61 &1080529949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46512,7 +46512,7 @@ MonoBehaviour:
   buttonSpriteRenderer: {fileID: 1907757175}
   pressedSprite: {fileID: -1990261943010127396, guid: d2067590b698c3e43b2a16b5f4a4ffdd, type: 3}
   platformsToRise:
-  - {fileID: 832435161}
+  - {fileID: 1854712645}
   - {fileID: 1340212317}
   - {fileID: 1356922262}
   - {fileID: 115306654}
