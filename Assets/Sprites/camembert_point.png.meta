@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      camembert_point_0: -5911406636790538291
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

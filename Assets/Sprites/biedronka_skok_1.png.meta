@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      biedronka_skok_1_0: 4121601733688502429
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

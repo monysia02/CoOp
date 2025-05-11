@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      biedronka_bieg_1_0: -776935507878329061
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

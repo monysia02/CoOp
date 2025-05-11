@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      grzyb_pop2_0: 2518785836122667641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

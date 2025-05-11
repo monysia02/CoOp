@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kot_biega_other-1_0: -8837931903031768938
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

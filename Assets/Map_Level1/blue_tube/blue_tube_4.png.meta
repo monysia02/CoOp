@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blue_tube_4_0: -640863594605418986
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
